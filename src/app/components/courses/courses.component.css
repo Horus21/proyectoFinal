@@ -1,0 +1,19 @@
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: flex-start;
+    padding: 15px;
+}
+
+.card{
+    flex: 1 1 calc(33.333% - 16px);
+    max-width: 300px;
+    min-width: 250px;
+    box-sizing: border-box;
+}
+
+.course-grid{
+    margin: 16px;
+}

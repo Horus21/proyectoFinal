@@ -1,0 +1,24 @@
+services:
+  mysqlserver:
+    container_name: mysqlserver
+    image: "mysql:8.0"
+    environment:
+      - MYSQL_ROOT_PASSWORD=netec123
+      - MYSQL_DATABASE=items
+    healthcheck:
+      test: mysqladmin ping -uroot -p${MYSQL_ROOT_PASSWORD} -hlocalhost
+  
+  microcourse:
+    container_name: microcourse
+    image: edgardovefe/angulardev:microservicecourse
+    environment:
+      - IP_DB=mysqlserver
+      - PORT_DB=3306
+      - NAME_DB=items
+      - USER_DB=root
+      - PASSWORD_DB=netec123
+    ports:
+      - 8084:8084
+    depends_on:
+      mysqlserver:
+        condition: service_healthy

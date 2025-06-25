@@ -1,0 +1,27 @@
+@for (course of courses; track $index) {
+<div class="container">
+    <div class="item">
+        <mat-card class="card" >
+            <mat-card-header>
+              <mat-card-title>{{course.name}}</mat-card-title>
+              <mat-card-subtitle>{{course.level}}</mat-card-subtitle>
+            </mat-card-header>
+    
+            <mat-card-content>
+              <p>
+                {{course.description}}
+              </p>
+              <p>
+                {{course.duration}}
+              </p>
+              <p>
+                {{course.price}}
+              </p>
+            </mat-card-content>
+        
+          </mat-card>
+    </div>
+</div>
+
+      
+}
