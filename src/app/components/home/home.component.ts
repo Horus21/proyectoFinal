@@ -59,11 +59,10 @@ export class HomeComponent implements OnInit {
 
         // Simulación de login exitoso
         if (email === 'admin@admin.com' && password === '123456') {
-          this.router.navigate(['/dashboard']);
 
           // Navegar a la página de cursos después del login
           setTimeout(() => {
-            this.router.navigate(['/courses']);
+            this.router.navigate(['/dashboard']);
           }, 1000);
         } else {
           this.snackBar.open('Credenciales incorrectas. Intenta con admin@admin.com / 123456', 'Cerrar', {

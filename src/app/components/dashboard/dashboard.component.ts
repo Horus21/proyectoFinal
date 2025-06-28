@@ -11,6 +11,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { ICourse } from '../../shared/models';
 import { CursosService } from '../../services/cursos/cursos.service';
 import { CourseModalComponent, CourseModalData } from '../course-modal/course-modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,12 +31,13 @@ import { CourseModalComponent, CourseModalData } from '../course-modal/course-mo
 })
 export class DashboardComponent {
   @ViewChild(MatTable) table!: MatTable<ICourse>;
+  private readonly snackBar = inject(MatSnackBar);
 
   displayedColumns: string[] = ['name', 'description', 'price', 'level', 'duration', 'actions'];
-  
+
   private readonly coursesService = inject(CursosService);
   courses: ICourse[] = [];
-  
+
   // Opciones para el dropdown de nivel
   levelOptions = [
     { value: 'Principiante', label: 'Principiante' },
@@ -83,11 +85,16 @@ export class DashboardComponent {
     this.coursesService.deleteCourse(id!).subscribe({
       next:()=>{
         this.courses = this.courses.filter(c => c.id !== course.id);
-        this.table.renderRows();    
+        this.table.renderRows();
+           this.snackBar.open('Curso eliminado exitosamente', 'Cerrar', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
         }
     })
-  
-    
+
+
   }
 
   createNewCourse(): void {
@@ -118,7 +125,7 @@ export class DashboardComponent {
             level: result.level,
             duration: result.duration
           };
-          
+
           this.courses.push(newCourse);
           console.log('Nuevo curso creado:', newCourse);
         } else if (mode === 'edit' && course) {
@@ -136,7 +143,7 @@ export class DashboardComponent {
             console.log('Curso actualizado:', this.courses[index]);
           }
         }
-        
+
         this.table.renderRows();
       }
     });

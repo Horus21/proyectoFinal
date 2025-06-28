@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ICourse } from '../../shared/models';
 import { CursosService } from '../../services/cursos/cursos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface CourseModalData {
   mode: 'create' | 'edit';
@@ -40,15 +41,15 @@ export interface CourseModalData {
       gap: 16px;
       padding: 16px 0;
     }
-    
+
     .full-width {
       width: 100%;
     }
-    
+
     mat-dialog-actions {
       padding: 16px 0;
     }
-    
+
     mat-dialog-actions button {
       margin-left: 8px;
     }
@@ -59,15 +60,16 @@ export class CourseModalComponent implements OnInit {
   levelOptions: Array<{ value: string; label: string }> = [];
   isEditMode: boolean = false;
   private readonly coursesService = inject(CursosService);
-  @Output() updateTable = new EventEmitter<boolean>();
+  private readonly dialogRef = inject(MatDialogRef<CourseModalComponent>);
+  private readonly snackBar = inject(MatSnackBar);
+
   constructor(
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<CourseModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CourseModalData
   ) {
     this.levelOptions = data.levelOptions || [];
     this.isEditMode = data.mode === 'edit';
-    
+
     this.courseForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
@@ -79,14 +81,23 @@ export class CourseModalComponent implements OnInit {
 editService(dataCourse: ICourse){
   this.coursesService.updateCourse(dataCourse).subscribe({
     next:()=>{
-      this.updateTable.emit(true);
+        this.alert('editado');
     }
   })
 }
+
+alert(message: string): void {
+  this.snackBar.open(`Curso ${message} exitosamente`, 'Cerrar', {
+    duration: 5000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  });
+}
+
 createCourseService(dataCourse: ICourse){
   this.coursesService.createCourse(dataCourse).subscribe({
     next:()=>{
-      this.updateTable.emit(true);
+         this.alert('creado');
     }
   })
 }
@@ -106,7 +117,7 @@ createCourseService(dataCourse: ICourse){
   onSubmit(): void {
     if (this.courseForm.valid) {
       const formData = this.courseForm.value;
-      
+
       // Si es modo edición, incluir el ID del curso original
       if (this.isEditMode && this.data.course) {
         formData.id = this.data.course.id;
@@ -114,8 +125,8 @@ createCourseService(dataCourse: ICourse){
       }else{
         this.createCourseService(formData)
       }
-       
+
       this.dialogRef.close(formData);
     }
   }
-} 
+}
