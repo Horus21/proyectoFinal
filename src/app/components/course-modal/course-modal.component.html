@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Curso' : 'Crear Nuevo Curso' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="courseForm" class="course-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre del curso</mat-label>
+      <input matInput formControlName="name" placeholder="Ej: Angular Básico">
+      <mat-error *ngIf="courseForm.get('name')?.hasError('required')">
+        El nombre es requerido
+      </mat-error>
+      <mat-error *ngIf="courseForm.get('name')?.hasError('minlength')">
+        El nombre debe tener al menos 3 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" rows="3" 
+                placeholder="Describe el contenido del curso"></textarea>
+      <mat-error *ngIf="courseForm.get('description')?.hasError('required')">
+        La descripción es requerida
+      </mat-error>
+      <mat-error *ngIf="courseForm.get('description')?.hasError('minlength')">
+        La descripción debe tener al menos 10 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Precio</mat-label>
+      <input matInput type="number" formControlName="price" placeholder="0.00">
+      <span matTextSuffix>$</span>
+      <mat-error *ngIf="courseForm.get('price')?.hasError('required')">
+        El precio es requerido
+      </mat-error>
+      <mat-error *ngIf="courseForm.get('price')?.hasError('min')">
+        El precio debe ser mayor a 0
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nivel</mat-label>
+      <mat-select formControlName="level">
+        <mat-option *ngFor="let level of levelOptions" [value]="level.value">
+          {{ level.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="courseForm.get('level')?.hasError('required')">
+        El nivel es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Duración</mat-label>
+      <input matInput formControlName="duration" placeholder="Ej: 20 horas">
+      <mat-error *ngIf="courseForm.get('duration')?.hasError('required')">
+        La duración es requerida
+      </mat-error>
+      <mat-error *ngIf="courseForm.get('duration')?.hasError('minlength')">
+        La duración debe tener al menos 3 caracteres
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button color="primary" 
+          [disabled]="courseForm.invalid"
+          (click)="onSubmit()">
+    <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+    {{ isEditMode ? 'Guardar Cambios' : 'Crear Curso' }}
+  </button>
+</mat-dialog-actions>

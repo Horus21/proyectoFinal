@@ -1,27 +1,37 @@
-@for (course of courses; track $index) {
-<div class="container">
-    <div class="item">
-        <mat-card class="card" >
-            <mat-card-header>
-              <mat-card-title>{{course.name}}</mat-card-title>
-              <mat-card-subtitle>{{course.level}}</mat-card-subtitle>
-            </mat-card-header>
-    
-            <mat-card-content>
-              <p>
-                {{course.description}}
-              </p>
-              <p>
-                {{course.duration}}
-              </p>
-              <p>
-                {{course.price}}
-              </p>
-            </mat-card-content>
-        
-          </mat-card>
-    </div>
+<div class="courses-container">
+  <div class="courses-grid">
+    @for (course of courses; track $index) {
+      <div class="course-card-wrapper">
+        <mat-card class="course-card">
+          <mat-card-header>
+            <mat-card-title class="course-title">{{course.name}}</mat-card-title>
+            <mat-card-subtitle class="course-level">{{course.level}}</mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content class="course-content">
+            <p class="course-description">{{course.description}}</p>
+            <div class="course-details">
+              <div class="detail-item">
+                <mat-icon class="detail-icon">schedule</mat-icon>
+                <span>{{course.duration}}</span>
+              </div>
+              <div class="detail-item">
+                <mat-icon class="detail-icon">attach_money</mat-icon>
+                <span>{{course.price}}</span>
+              </div>
+            </div>
+          </mat-card-content>
+          
+          <mat-card-actions class="course-actions">
+            <button mat-raised-button color="primary" class="enroll-button">
+              Inscribirse
+            </button>
+            <button mat-button color="accent" class="details-button">
+              Ver detalles
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    }
+  </div>
 </div>
-
-      
-}

@@ -1,1 +1,68 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <mat-card class="dashboard-card">
+    <mat-toolbar color="primary" class="dashboard-toolbar">
+      <h1>Administración de Cursos</h1>
+      <span class="toolbar-spacer"></span>
+      <button mat-raised-button color="accent" (click)="createNewCourse()">
+        <mat-icon>add</mat-icon>
+        Crear Nuevo Curso
+      </button>
+    </mat-toolbar>
+
+    <mat-card-content class="table-content">
+      <table mat-table [dataSource]="courses" class="courses-table">
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let course">{{ course.name }}</td>
+        </ng-container>
+
+        <!-- Descripción Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let course">{{ course.description }}</td>
+        </ng-container>
+
+        <!-- Precio Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Precio</th>
+          <td mat-cell *matCellDef="let course">${{ course.price }}</td>
+        </ng-container>
+
+        <!-- Nivel Column -->
+        <ng-container matColumnDef="level">
+          <th mat-header-cell *matHeaderCellDef>Nivel</th>
+          <td mat-cell *matCellDef="let course">
+            <span class="level-chip" [class]="'level-' + getLevelColor(course.level)">
+              {{ course.level }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Duración Column -->
+        <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef>Duración</th>
+          <td mat-cell *matCellDef="let course">{{ course.duration }}</td>
+        </ng-container>
+
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let course">
+            <div class="actions-container">
+              <button mat-icon-button class="btn-edit" (click)="editCourse(course)" matTooltip="Editar curso">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button class="btn-delete" (click)="deleteCourse(course)" matTooltip="Eliminar curso">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

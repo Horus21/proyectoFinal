@@ -35,7 +35,7 @@ export class CursosService {
   )
  }
 
- deleteCourse(id:string):Observable<ICourse>{
+ deleteCourse(id:number):Observable<ICourse>{
   return this.http.delete<ICourse>(`${this.baseUri}/${id}`).pipe(
     timeout(3000),
     switchMap((response) =>{ return of(response)} )

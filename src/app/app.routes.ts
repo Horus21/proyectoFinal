@@ -4,7 +4,7 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    {path:'c',component:HomeComponent},
-    {path:'',component:CoursesComponent},
+    {path:'',component:HomeComponent},
+    {path:'cursos',component:CoursesComponent},
     {path:'dashboard',component:DashboardComponent}
 ];

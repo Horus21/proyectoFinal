@@ -1,0 +1,149 @@
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.dashboard-toolbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white;
+  padding: 1rem 1.5rem;
+}
+
+.dashboard-toolbar h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.table-content {
+  padding: 0;
+}
+
+.courses-table {
+  width: 100%;
+  background: white;
+  border: none;
+}
+
+.courses-table th {
+  background-color: #f8fafc;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 16px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.courses-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: #4a5568;
+}
+
+.courses-table tr:last-child td {
+  border-bottom: none;
+}
+
+.courses-table tr:hover {
+  background-color: #f8fafc;
+  transition: background-color 0.2s ease;
+}
+
+.actions-container {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+/* Estilos para los niveles con colores específicos */
+.level-chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+.level-beginner {
+  background-color: #10b981;
+}
+
+.level-intermediate {
+  background-color: #f59e0b;
+}
+
+.level-advanced {
+  background-color: #ef4444;
+}
+
+/* Estilos para los botones de acciones */
+.btn-edit {
+  color: #10b981 !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.btn-edit:hover {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.btn-delete {
+  color: #ef4444 !important;
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+.btn-delete:hover {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+  
+  .dashboard-toolbar {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1rem;
+  }
+  
+  .dashboard-toolbar h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .toolbar-spacer {
+    display: none;
+  }
+  
+  .courses-table {
+    min-width: 600px;
+  }
+  
+  .actions-container {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

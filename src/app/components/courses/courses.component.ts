@@ -4,10 +4,11 @@ import { ICourse } from '../../shared/models';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-courses',
-  imports: [MatCardModule, MatButtonModule, MatGridListModule],
+  imports: [MatCardModule, MatButtonModule, MatGridListModule, MatIconModule],
   providers:[CursosService],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'

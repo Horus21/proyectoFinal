@@ -1,10 +1,60 @@
-<mat-toolbar>
-  <a routerLink="/" class="title">Cursos app</a>
+<!-- Header -->
+<mat-toolbar class="main-header">
+  <div class="header-content">
+    <div class="logo-section">
+      <mat-icon class="logo-icon">school</mat-icon>
+      <a routerLink="/" class="app-title">CursosApp</a>
+    </div>
+    
+    <nav class="nav-menu">
+      <a routerLink="/" routerLinkActive="active" class="nav-link">
+        <mat-icon>home</mat-icon>
+        <span>Inicio</span>
+      </a>
+      <a routerLink="/cursos" routerLinkActive="active" class="nav-link">
+        <mat-icon>library_books</mat-icon>
+        <span>Cursos</span>
+      </a>
+      <!-- <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a> -->
+    </nav>  
+
+  </div>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<!-- Contenido principal -->
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
 
+<!-- Footer -->
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <div class="footer-logo">
+        <mat-icon class="footer-logo-icon">school</mat-icon>
+        <span class="footer-app-title">CursosApp</span>
+      </div>
+      <p class="footer-description">
+        Tu plataforma de aprendizaje online con los mejores cursos y profesores expertos.
+      </p>
+    </div>
+    
+    <div class="footer-section">
+      <h3 class="footer-title">Enlaces rápidos</h3>
+      <ul class="footer-links">
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/cursos">Cursos</a></li>
+      </ul>
+    </div>
 
-<footer>
-  <span>2025 cursos app</span>
+  </div>
+  
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <span>&copy; 2025 CursosApp. Todos los derechos reservados.</span>
+    </div>
+  </div>
 </footer>
